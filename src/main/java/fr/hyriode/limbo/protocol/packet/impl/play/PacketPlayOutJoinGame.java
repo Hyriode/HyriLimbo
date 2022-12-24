@@ -34,12 +34,24 @@ public class PacketPlayOutJoinGame extends PacketOut {
     @Override
     public void write(NotchianBuffer buffer, ProtocolVersion version) {
         buffer.writeInt(this.entityId);
-        buffer.writeByte(this.gameMode.getId());
-        buffer.writeByte(this.dimension.getId());
-        buffer.writeByte(this.difficulty.getId());
-        buffer.writeByte(this.maxPlayers);
-        buffer.writeString(this.levelType);
-        buffer.writeBoolean(this.debugInfo);
+
+        if (version.isLess(ProtocolVersion.V_1_9)) {
+            buffer.writeByte(this.gameMode.getId());
+            buffer.writeByte(this.dimension.getId());
+            buffer.writeByte(this.difficulty.getId());
+            buffer.writeByte(this.maxPlayers);
+            buffer.writeString(this.levelType);
+            buffer.writeBoolean(this.debugInfo);
+        }
+
+        if (version.isInter(ProtocolVersion.V_1_9, ProtocolVersion.V_1_13_2)) {
+            buffer.writeByte(this.gameMode.getId());
+            buffer.writeInt(this.dimension.getId());
+            buffer.writeByte(this.difficulty.getId());
+            buffer.writeByte(this.maxPlayers);
+            buffer.writeString(this.levelType);
+            buffer.writeBoolean(this.debugInfo);
+        }
     }
 
 }

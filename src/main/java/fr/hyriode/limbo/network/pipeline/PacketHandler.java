@@ -39,11 +39,9 @@ public class PacketHandler extends SimpleChannelInboundHandler<PacketIn> {
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
-        ctx.close();
-
         this.playerSession.destroy();
 
-        HyriLimbo.get().getLogger().log(Level.WARNING, "Player internal error", cause);
+        ctx.close();
     }
 
 }

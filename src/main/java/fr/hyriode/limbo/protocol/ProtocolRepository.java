@@ -1,6 +1,7 @@
 package fr.hyriode.limbo.protocol;
 
 import fr.hyriode.limbo.protocol.impl.Protocol107;
+import fr.hyriode.limbo.protocol.impl.Protocol108;
 import fr.hyriode.limbo.protocol.impl.Protocol47;
 
 import java.util.HashMap;
@@ -17,6 +18,7 @@ public class ProtocolRepository {
     public ProtocolRepository() {
         this.registerProtocol(ProtocolVersion.V_1_8, new Protocol47());
         this.registerProtocol(ProtocolVersion.V_1_9, new Protocol107());
+        this.registerProtocol(ProtocolVersion.V_1_9_1, new Protocol108());
     }
 
     public void registerProtocol(ProtocolVersion protocolVersion, Protocol protocol) {

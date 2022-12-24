@@ -70,6 +70,10 @@ public enum ProtocolVersion {
         return this.id <= version.getId();
     }
 
+    public boolean isInter(ProtocolVersion min, ProtocolVersion max) {
+        return this.id >= min.getId() && this.id <= max.getId();
+    }
+
     public static ProtocolVersion earliest() {
         return V_1_8;
     }
