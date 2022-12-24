@@ -41,7 +41,12 @@ public class PacketPlayOutTitle extends PacketOut {
 
     @Override
     public void write(NotchianBuffer buffer, ProtocolVersion version) {
-        buffer.writeEnum(this.action);
+        if (version.isMoreOrEqual(ProtocolVersion.V_1_11) && this.action == Action.TIMES) {
+            buffer.writeVarInt(3);
+        } else {
+            buffer.writeEnum(this.action);
+        }
+
 
         if (this.action == Action.TITLE || this.action == Action.SUBTITLE) {
             buffer.writeString(this.message);
@@ -59,7 +64,6 @@ public class PacketPlayOutTitle extends PacketOut {
         TITLE,
         SUBTITLE,
         TIMES,
-        CLEAR
 
     }
 

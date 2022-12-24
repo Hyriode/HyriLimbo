@@ -10,14 +10,18 @@ import fr.hyriode.limbo.protocol.packet.PacketIn;
  */
 public class PacketPlayInKeepAlive extends PacketIn {
 
-    private int id;
+    private long id;
 
     @Override
     public void read(NotchianBuffer buffer, ProtocolVersion version) {
-        this.id = buffer.readVarInt();
+        if (version.isMoreOrEqual(ProtocolVersion.V_1_12_2)) {
+            this.id = buffer.readLong();
+        } else {
+            this.id = buffer.readVarInt();
+        }
     }
 
-    public int getId() {
+    public long getId() {
         return this.id;
     }
 

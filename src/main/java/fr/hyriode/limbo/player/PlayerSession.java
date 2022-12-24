@@ -36,7 +36,7 @@ public class PlayerSession {
     private GameProfile profile;
 
     private long lastKeepAlive = -1;
-    private int keepAliveId = 0;
+    private long keepAliveId = 0;
 
     public PlayerSession(Channel channel) {
         this.channel = channel;
@@ -165,7 +165,7 @@ public class PlayerSession {
         this.lastKeepAlive = lastKeepAlive;
     }
 
-    public int getKeepAliveId() {
+    public long getKeepAliveId() {
         return this.keepAliveId;
     }
 

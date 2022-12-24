@@ -10,15 +10,19 @@ import fr.hyriode.limbo.protocol.packet.PacketOut;
  */
 public class PacketPlayOutKeepAlive extends PacketOut {
 
-    private final int id;
+    private final long id;
 
-    public PacketPlayOutKeepAlive(int id) {
+    public PacketPlayOutKeepAlive(long id) {
         this.id = id;
     }
 
     @Override
     public void write(NotchianBuffer buffer, ProtocolVersion version) {
-        buffer.writeVarInt(this.id);
+        if (version.isMoreOrEqual(ProtocolVersion.V_1_12_2)) {
+            buffer.writeLong(this.id);
+        } else {
+            buffer.writeVarInt((int) this.id);
+        }
     }
 
 }

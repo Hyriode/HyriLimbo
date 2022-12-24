@@ -41,7 +41,7 @@ public class KeepAliveHandler implements PacketInHandler<PacketPlayInKeepAlive> 
 
     @Override
     public void handle(PlayerSession playerSession, PacketPlayInKeepAlive packet) {
-        final int keepAliveId = packet.getId();
+        final long keepAliveId = packet.getId();
 
         if (playerSession.getKeepAliveId() == keepAliveId) {
             playerSession.setLastKeepAlive(System.currentTimeMillis());
