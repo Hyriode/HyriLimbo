@@ -1,6 +1,7 @@
 package fr.hyriode.limbo.protocol.packet.impl.login;
 
 import fr.hyriode.limbo.protocol.NotchianBuffer;
+import fr.hyriode.limbo.protocol.ProtocolVersion;
 import fr.hyriode.limbo.protocol.packet.PacketOut;
 
 import java.util.UUID;
@@ -20,7 +21,7 @@ public class PacketLoginOutSuccess extends PacketOut {
     }
 
     @Override
-    public void write(NotchianBuffer buffer) {
+    public void write(NotchianBuffer buffer, ProtocolVersion version) {
         buffer.writeString(this.uuid.toString());
         buffer.writeString(this.name);
     }

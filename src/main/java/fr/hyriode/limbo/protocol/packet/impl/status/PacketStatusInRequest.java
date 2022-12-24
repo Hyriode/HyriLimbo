@@ -1,6 +1,7 @@
 package fr.hyriode.limbo.protocol.packet.impl.status;
 
 import fr.hyriode.limbo.protocol.NotchianBuffer;
+import fr.hyriode.limbo.protocol.ProtocolVersion;
 import fr.hyriode.limbo.protocol.packet.PacketIn;
 
 /**
@@ -10,6 +11,6 @@ import fr.hyriode.limbo.protocol.packet.PacketIn;
 public class PacketStatusInRequest extends PacketIn {
 
     @Override
-    public void read(NotchianBuffer buffer) {}
+    public void read(NotchianBuffer buffer, ProtocolVersion version) {}
 
 }

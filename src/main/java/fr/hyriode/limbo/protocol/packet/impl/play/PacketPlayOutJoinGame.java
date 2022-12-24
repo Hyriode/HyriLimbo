@@ -1,5 +1,6 @@
 package fr.hyriode.limbo.protocol.packet.impl.play;
 
+import fr.hyriode.limbo.protocol.ProtocolVersion;
 import fr.hyriode.limbo.world.GameMode;
 import fr.hyriode.limbo.protocol.NotchianBuffer;
 import fr.hyriode.limbo.protocol.packet.PacketOut;
@@ -31,7 +32,7 @@ public class PacketPlayOutJoinGame extends PacketOut {
     }
 
     @Override
-    public void write(NotchianBuffer buffer) {
+    public void write(NotchianBuffer buffer, ProtocolVersion version) {
         buffer.writeInt(this.entityId);
         buffer.writeByte(this.gameMode.getId());
         buffer.writeByte(this.dimension.getId());

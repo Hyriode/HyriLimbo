@@ -1,6 +1,7 @@
 package fr.hyriode.limbo.protocol.packet.impl.login;
 
 import fr.hyriode.limbo.protocol.NotchianBuffer;
+import fr.hyriode.limbo.protocol.ProtocolVersion;
 import fr.hyriode.limbo.protocol.packet.PacketIn;
 
 /**
@@ -12,7 +13,7 @@ public class PacketLoginInStart extends PacketIn {
     private String name;
 
     @Override
-    public void read(NotchianBuffer buffer) {
+    public void read(NotchianBuffer buffer, ProtocolVersion version) {
         this.name = buffer.readString();
     }
 

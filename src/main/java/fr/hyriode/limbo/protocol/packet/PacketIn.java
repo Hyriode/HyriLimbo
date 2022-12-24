@@ -1,6 +1,7 @@
 package fr.hyriode.limbo.protocol.packet;
 
 import fr.hyriode.limbo.protocol.NotchianBuffer;
+import fr.hyriode.limbo.protocol.ProtocolVersion;
 
 /**
  * Created by AstFaster
@@ -8,6 +9,6 @@ import fr.hyriode.limbo.protocol.NotchianBuffer;
  */
 public abstract class PacketIn extends Packet {
 
-    public abstract void read(NotchianBuffer buffer);
+    public abstract void read(NotchianBuffer buffer, ProtocolVersion version);
 
 }

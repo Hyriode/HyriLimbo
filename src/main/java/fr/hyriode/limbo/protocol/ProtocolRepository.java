@@ -1,5 +1,6 @@
 package fr.hyriode.limbo.protocol;
 
+import fr.hyriode.limbo.protocol.impl.Protocol107;
 import fr.hyriode.limbo.protocol.impl.Protocol47;
 
 import java.util.HashMap;
@@ -14,11 +15,14 @@ public class ProtocolRepository {
     private final Map<ProtocolVersion, Protocol> protocols = new HashMap<>();
 
     public ProtocolRepository() {
-        this.registerProtocol(ProtocolVersion.PROTOCOL_1_8, new Protocol47());
+        this.registerProtocol(ProtocolVersion.V_1_8, new Protocol47());
+        this.registerProtocol(ProtocolVersion.V_1_9, new Protocol107());
     }
 
     public void registerProtocol(ProtocolVersion protocolVersion, Protocol protocol) {
         this.protocols.put(protocolVersion, protocol);
+
+        System.out.println("Registered '" + protocolVersion.name() + "' protocol.");
     }
 
     public void unregisterProtocol(ProtocolVersion protocolVersion) {

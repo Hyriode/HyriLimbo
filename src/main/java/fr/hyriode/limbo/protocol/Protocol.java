@@ -6,7 +6,16 @@ package fr.hyriode.limbo.protocol;
  */
 public abstract class Protocol {
 
-    protected ProtocolRegistry registry = new ProtocolRegistry();
+    protected final ProtocolRegistry registry = new ProtocolRegistry();
+
+    public Protocol() {
+        this.registerPackets();
+        this.registerHandlers();
+    }
+
+    public abstract void registerPackets();
+
+    public abstract void registerHandlers();
 
     public ProtocolRegistry getRegistry() {
         return this.registry;

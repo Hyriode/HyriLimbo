@@ -1,6 +1,7 @@
 package fr.hyriode.limbo.protocol.packet.impl.play;
 
 import fr.hyriode.limbo.protocol.NotchianBuffer;
+import fr.hyriode.limbo.protocol.ProtocolVersion;
 import fr.hyriode.limbo.protocol.packet.PacketOut;
 
 /**
@@ -16,7 +17,7 @@ public class PacketPlayOutKeepAlive extends PacketOut {
     }
 
     @Override
-    public void write(NotchianBuffer buffer) {
+    public void write(NotchianBuffer buffer, ProtocolVersion version) {
         buffer.writeVarInt(this.id);
     }
 

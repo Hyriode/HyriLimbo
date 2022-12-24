@@ -1,6 +1,7 @@
 package fr.hyriode.limbo.protocol.packet.impl.status;
 
 import fr.hyriode.limbo.protocol.NotchianBuffer;
+import fr.hyriode.limbo.protocol.ProtocolVersion;
 import fr.hyriode.limbo.protocol.packet.PacketIn;
 
 /**
@@ -12,7 +13,7 @@ public class PacketStatusInPing extends PacketIn {
     private long id;
 
     @Override
-    public void read(NotchianBuffer buffer) {
+    public void read(NotchianBuffer buffer, ProtocolVersion version) {
         this.id = buffer.readLong();
     }
 

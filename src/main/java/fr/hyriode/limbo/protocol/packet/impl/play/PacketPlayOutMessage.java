@@ -2,6 +2,7 @@ package fr.hyriode.limbo.protocol.packet.impl.play;
 
 import com.google.gson.JsonObject;
 import fr.hyriode.limbo.protocol.NotchianBuffer;
+import fr.hyriode.limbo.protocol.ProtocolVersion;
 import fr.hyriode.limbo.protocol.packet.PacketOut;
 
 /**
@@ -24,7 +25,7 @@ public class PacketPlayOutMessage extends PacketOut {
     }
 
     @Override
-    public void write(NotchianBuffer buffer) {
+    public void write(NotchianBuffer buffer, ProtocolVersion version) {
         buffer.writeString(this.message);
         buffer.writeByte(this.position.getId());
     }

@@ -22,10 +22,12 @@ import java.util.List;
 public class PacketCodec extends MessageToMessageCodec<ByteBuf, PacketOut> {
 
     private Protocol protocol;
+    private ProtocolVersion protocolVersion;
     private ProtocolState protocolState;
 
     public PacketCodec() {
-        this.protocol = HyriLimbo.get().getProtocolRepository().getProtocol(ProtocolVersion.earliest());
+        this.protocolVersion = ProtocolVersion.earliest();
+        this.protocol = HyriLimbo.get().getProtocolRepository().getProtocol(this.protocolVersion);
         this.protocolState = ProtocolState.HANDSHAKE;
     }
 
@@ -35,7 +37,7 @@ public class PacketCodec extends MessageToMessageCodec<ByteBuf, PacketOut> {
 
         this.protocol.getRegistry().getPacketId(this.protocolState, packet).ifPresentOrElse(packetId -> {
             buffer.writeVarInt(packetId);
-            packet.write(buffer);
+            packet.write(buffer, this.protocolVersion);
             out.add(buffer);
         }, () -> System.err.println("Couldn't find the id of '" + packet.getClass().getSimpleName() + "' packet!"));
     }
@@ -50,13 +52,14 @@ public class PacketCodec extends MessageToMessageCodec<ByteBuf, PacketOut> {
         final int packetId = buffer.readVarInt();
 
         this.protocol.getRegistry().getPacketById(this.protocolState, packetId).ifPresent(packet -> {
-            packet.read(buffer);
+            packet.read(buffer, this.protocolVersion);
             out.add(packet);
         });
     }
 
-    public void setProtocol(Protocol protocol) {
-        this.protocol = protocol;
+    public void setProtocolVersion(ProtocolVersion protocolVersion) {
+        this.protocolVersion = protocolVersion;
+         this.protocol = HyriLimbo.get().getProtocolRepository().getProtocol(this.protocolVersion);
     }
 
     public void setProtocolState(ProtocolState protocolState) {

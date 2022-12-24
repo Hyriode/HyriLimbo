@@ -70,7 +70,7 @@ public class PlayerSession {
     }
 
     public void sendPosition(double x, double y, double z, float yaw, float pitch) {
-        this.sendPacket(new PacketPlayOutPositionAndLook(x, y, z, yaw, pitch, (byte) 0));
+        this.sendPacket(new PacketPlayOutPositionAndLook(x, y, z, yaw, pitch));
     }
 
     public void sendTitle(Title title) {
@@ -94,11 +94,15 @@ public class PlayerSession {
     }
 
     public void disconnect(String reason) {
-        this.sendPacket(new PacketOutDisconnect(reason));
-
         if (this.channel.isActive()) {
             this.channel.close();
         }
+
+        if (this.protocolState == ProtocolState.HANDSHAKE || this.protocolState == ProtocolState.STATUS) {
+            return;
+        }
+
+        this.sendPacket(new PacketOutDisconnect(reason));
     }
 
     public void destroy() {
@@ -126,7 +130,6 @@ public class PlayerSession {
 
     public void setProtocol(Protocol protocol) {
         this.protocol = protocol;
-        this.channel.pipeline().get(PacketCodec.class).setProtocol(this.protocol);
     }
 
     public ProtocolVersion getProtocolVersion() {
@@ -135,6 +138,7 @@ public class PlayerSession {
 
     public void setProtocolVersion(ProtocolVersion protocolVersion) {
         this.protocolVersion = protocolVersion;
+        this.channel.pipeline().get(PacketCodec.class).setProtocolVersion(this.protocolVersion);
     }
 
     public String getName() {

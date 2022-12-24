@@ -1,6 +1,7 @@
 package fr.hyriode.limbo.protocol.packet.impl;
 
 import fr.hyriode.limbo.protocol.NotchianBuffer;
+import fr.hyriode.limbo.protocol.ProtocolVersion;
 import fr.hyriode.limbo.protocol.packet.PacketIn;
 
 /**
@@ -15,7 +16,7 @@ public class PacketInHandshake extends PacketIn {
     private int nextState;
 
     @Override
-    public void read(NotchianBuffer buffer) {
+    public void read(NotchianBuffer buffer, ProtocolVersion version) {
         this.protocol = buffer.readVarInt();
         this.address = buffer.readString();
         this.port = buffer.readUnsignedShort();
