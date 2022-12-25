@@ -27,7 +27,14 @@ public class PacketPlayOutMessage extends PacketOut {
     @Override
     public void write(NotchianBuffer buffer, ProtocolVersion version) {
         buffer.writeString(this.message);
-        buffer.writeByte(this.position.getId());
+
+        if (version.isMoreOrEqual(ProtocolVersion.V_1_19_2)) {
+            buffer.writeBoolean(this.position == ChatPosition.ACTION_BAR);
+        } else if (version == ProtocolVersion.V_1_19) {
+            buffer.writeVarInt(this.position.getId());
+        } else {
+            buffer.writeByte(this.position.getId());
+        }
     }
 
     public enum ChatPosition {

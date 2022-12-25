@@ -25,6 +25,17 @@ public class ProtocolRepository {
         this.registerProtocol(ProtocolVersion.V_1_12, new Protocol335());
         this.registerProtocol(ProtocolVersion.V_1_12_1, new Protocol338());
         this.registerProtocol(ProtocolVersion.V_1_12_2, new Protocol338());
+        this.registerProtocol(ProtocolVersion.V_1_13, new Protocol393());
+        this.registerProtocol(ProtocolVersion.V_1_13_1, new Protocol393());
+        this.registerProtocol(ProtocolVersion.V_1_13_2, new Protocol393());
+        this.registerProtocol(ProtocolVersion.V_1_14, new Protocol477());
+        this.registerProtocol(ProtocolVersion.V_1_14_1, new Protocol477());
+        this.registerProtocol(ProtocolVersion.V_1_14_2, new Protocol477());
+        this.registerProtocol(ProtocolVersion.V_1_14_3, new Protocol477());
+        this.registerProtocol(ProtocolVersion.V_1_15, new Protocol573());
+        this.registerProtocol(ProtocolVersion.V_1_15_1, new Protocol573());
+        this.registerProtocol(ProtocolVersion.V_1_15_2, new Protocol573());
+        this.registerProtocol(ProtocolVersion.V_1_16, new Protocol735());
     }
 
     public void registerProtocol(ProtocolVersion protocolVersion, Protocol protocol) {

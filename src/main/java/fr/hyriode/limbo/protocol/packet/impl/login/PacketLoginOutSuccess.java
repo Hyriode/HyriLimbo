@@ -22,8 +22,17 @@ public class PacketLoginOutSuccess extends PacketOut {
 
     @Override
     public void write(NotchianBuffer buffer, ProtocolVersion version) {
-        buffer.writeString(this.uuid.toString());
+        if (version.isMoreOrEqual(ProtocolVersion.V_1_16)) {
+            buffer.writeUUID(this.uuid);
+        } else {
+            buffer.writeString(this.uuid.toString());
+        }
+
         buffer.writeString(this.name);
+
+        if (version.isMoreOrEqual(ProtocolVersion.V_1_19)) {
+            buffer.writeVarInt(0); // Number of properties, 0 it's a limbo
+        }
     }
 
 }
