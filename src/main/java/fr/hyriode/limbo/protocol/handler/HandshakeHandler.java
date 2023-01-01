@@ -8,6 +8,7 @@ import fr.hyriode.limbo.protocol.ProtocolState;
 import fr.hyriode.limbo.protocol.ProtocolVersion;
 import fr.hyriode.limbo.protocol.packet.PacketInHandler;
 import fr.hyriode.limbo.protocol.packet.impl.PacketInHandshake;
+import fr.hyriode.limbo.util.UUIDUtil;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -52,7 +53,7 @@ public class HandshakeHandler implements PacketInHandler<PacketInHandshake> {
         final String[] split = packet.getAddress().split("\00");
 
         if (split.length == 3 || split.length == 4) {
-            playerSession.setProfile(new GameProfile(UUID.fromString(split[2]), null, new ArrayList<>()));
+            playerSession.setProfile(new GameProfile(UUIDUtil.fromString(split[2]), null, new ArrayList<>()));
         }
     }
 

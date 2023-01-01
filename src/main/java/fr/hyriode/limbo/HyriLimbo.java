@@ -8,6 +8,7 @@ import fr.hyriode.limbo.util.References;
 import fr.hyriode.limbo.util.logger.ColoredLogger;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
@@ -23,7 +24,7 @@ public class HyriLimbo {
     private ProtocolRepository protocolRepository;
 
     private final ReentrantReadWriteLock playersLock = new ReentrantReadWriteLock();
-    private final Map<UUID, PlayerSession> players = new HashMap<>();
+    private final Map<UUID, PlayerSession> players = new ConcurrentHashMap<>();
 
     private Server server;
 

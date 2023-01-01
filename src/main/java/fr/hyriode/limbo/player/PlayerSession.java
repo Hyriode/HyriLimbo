@@ -94,9 +94,7 @@ public class PlayerSession {
     }
 
     public void disconnect(String reason) {
-        if (this.channel.isActive()) {
-            this.channel.close();
-        }
+        this.destroy();
 
         if (this.protocolState == ProtocolState.HANDSHAKE || this.protocolState == ProtocolState.STATUS) {
             return;
@@ -107,7 +105,13 @@ public class PlayerSession {
 
     public void destroy() {
         if (this.profile != null) {
+            System.out.println(this.getName() + " left the server.");
+
             HyriLimbo.get().removePlayer(this.profile.id());
+        }
+
+        if (this.channel.isActive()) {
+            this.channel.close();
         }
     }
 

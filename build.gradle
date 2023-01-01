@@ -36,6 +36,7 @@ repositories {
 
 shadowJar {
     configurations = [project.configurations.runtimeClasspath]
+    archiveVersion.set('')
     manifest {
         attributes 'Main-Class': 'fr.hyriode.limbo.Bootstrap'
     }

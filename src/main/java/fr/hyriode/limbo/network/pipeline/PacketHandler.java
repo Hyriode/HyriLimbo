@@ -40,8 +40,6 @@ public class PacketHandler extends SimpleChannelInboundHandler<PacketIn> {
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
         this.playerSession.destroy();
-
-        ctx.close();
     }
 
 }

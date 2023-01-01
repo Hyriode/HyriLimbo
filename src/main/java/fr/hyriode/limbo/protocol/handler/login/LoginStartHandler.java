@@ -32,6 +32,8 @@ public class LoginStartHandler implements PacketInHandler<PacketLoginInStart> {
             profile = new GameProfile(profile.id(), name, profile.properties());
         }
 
+        System.out.println(profile.id());
+
         playerSession.setProfile(profile);
         playerSession.sendLoginSuccess();
         playerSession.setProtocolState(ProtocolState.PLAY);
@@ -44,6 +46,8 @@ public class LoginStartHandler implements PacketInHandler<PacketLoginInStart> {
                 .withStay(5 * 20)
                 .withFadeOut(5));
         playerSession.sendMessage("§bWelcome on the Limbo!");
+
+        System.out.println(name + " joined the server.");
 
         HyriLimbo.get().addPlayer(playerSession);
     }
