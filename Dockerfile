@@ -1,9 +1,9 @@
 # Build Application Jar
-FROM gradle:jdk16 AS build
+FROM gradle:7.6.0 AS build
 
 WORKDIR /usr/app/
 
-# Copy HyriLimbo project files
+# Copy Limbo project files
 COPY . .
 
 # Get username and token used in build.gradle
@@ -16,14 +16,16 @@ RUN gradle shadowJar
 # Run Application
 FROM openjdk:18.0.1.1-jdk
 
-# Set working directory
-WORKDIR /usr/app/
-
-# Get all environments variables
-ENV MEMORY="1G"
+VOLUME ["/server"]
+WORKDIR /server
 
 # Copy previous builded Jar
 COPY --from=build /usr/app/build/libs/HyriLimbo-all.jar /usr/app/HyriLimbo.jar
+# Copy entrypoint script
+COPY --from=build /usr/app/docker-entrypoint.sh /usr/app/docker-entrypoint.sh
 
-# Start application
-ENTRYPOINT java -Xmx${MEMORY} -jar HyriLimbo.jar
+# Add permission to file
+RUN chmod +x /usr/app/docker-entrypoint.sh
+
+# Start Limbo
+CMD "/usr/app/docker-entrypoint.sh"
