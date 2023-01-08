@@ -9,12 +9,12 @@ import fr.hyriode.limbo.protocol.packet.impl.play.PacketPlayOutTitle;
  */
 public class Title {
 
-    private String title;
-    private String subtitle;
+    private String title = "";
+    private String subtitle = "";
 
-    private int fadeIn;
-    private int stay;
-    private int fadeOut;
+    private int fadeIn = 0;
+    private int stay = 0;
+    private int fadeOut = 0;
 
     public String getTitle() {
         return this.title;

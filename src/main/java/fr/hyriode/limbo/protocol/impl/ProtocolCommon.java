@@ -4,6 +4,7 @@ import fr.hyriode.limbo.protocol.Protocol;
 import fr.hyriode.limbo.protocol.ProtocolState;
 import fr.hyriode.limbo.protocol.handler.HandshakeHandler;
 import fr.hyriode.limbo.protocol.handler.login.LoginStartHandler;
+import fr.hyriode.limbo.protocol.handler.play.ChatHandler;
 import fr.hyriode.limbo.protocol.handler.play.KeepAliveHandler;
 import fr.hyriode.limbo.protocol.handler.status.PingHandler;
 import fr.hyriode.limbo.protocol.handler.status.StatusRequestHandler;
@@ -44,6 +45,7 @@ public abstract class ProtocolCommon extends Protocol {
         this.registry.registerHandler(PacketStatusInPing.class, new PingHandler());
         this.registry.registerHandler(PacketLoginInStart.class, new LoginStartHandler());
         this.registry.registerHandler(PacketPlayInKeepAlive.class, new KeepAliveHandler());
+        this.registry.registerHandler(PacketPlayInChatMessage.class, new ChatHandler());
     }
 
 }

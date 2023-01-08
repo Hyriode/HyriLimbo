@@ -1,0 +1,21 @@
+{
+  "command.doesnt-exist.message": "&cUnknown command: '&f%command%&c'!",
+  "command.no-permission.message": "&cYou don't have the permission to execute this command!",
+  "command.bad-usage.message": "&cInvalid command: '&f%usage%&c'!",
+
+  "login.prefix": "&3Login &f┃ ",
+
+  "login.invalid-password.message": "&fThe password is &cinvalid&f!",
+  "login.success.message": "&fLogin &asucceeded&f. Connecting you to a &blobby&f...",
+
+  "register.passwords-dont-match.message": "&fThe &b2 passwords don't &cmatch&f!",
+  "register.invalid-password.message": "&cInvalid password (6 chars minimum)!",
+  "register.success.message": "&fYour &cpassword &fhas successfully been &asaved&f.",
+
+  "afk.title": "&c&lAFK",
+  "afk.subtitle": "&fDo /lobby to return to lobby",
+
+  "login.title": "&b&lLOGIN",
+  "login.login-subtitle": "&fDo /login <password> to authenticate",
+  "login.register-subtitle": "&fDo /register <password> <password> to register"
+}

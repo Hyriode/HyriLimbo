@@ -36,12 +36,12 @@ public class ProtocolRepository {
         this.registerProtocol(ProtocolVersion.V_1_15_1, new Protocol573());
         this.registerProtocol(ProtocolVersion.V_1_15_2, new Protocol573());
         this.registerProtocol(ProtocolVersion.V_1_16, new Protocol735());
+
+        System.out.println("Registered " + this.protocols.size() + " protocols.");
     }
 
     public void registerProtocol(ProtocolVersion protocolVersion, Protocol protocol) {
         this.protocols.put(protocolVersion, protocol);
-
-        System.out.println("Registered '" + protocolVersion.name() + "' protocol.");
     }
 
     public void unregisterProtocol(ProtocolVersion protocolVersion) {

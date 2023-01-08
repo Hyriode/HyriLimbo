@@ -1,0 +1,21 @@
+{
+  "command.doesnt-exist.message": "&cCommande inconnue: '&f%command%&c' !",
+  "command.no-permission.message": "&cVous n'avez pas la permission d'éxécuter cette commande !",
+  "command.bad-usage.message": "&cCommand invalide: '&f%usage%&c' !",
+
+  "login.prefix": "&3Connexion &f┃ ",
+
+  "login.invalid-password.message": "&fLe mot de passe est &cincorrect &f!",
+  "login.success.message": "&fConnexion &aréussie&f. Connexion en cours vers un &blobby&f...",
+
+  "register.passwords-dont-match.message": "&fLes &b2 &fmots de passe ne sont pas &cidentiques&f!",
+  "register.invalid-password.message": "&cMot de passe invalide (6 caractères minimum) !",
+  "register.success.message": "&fVotre &cmot de passe &fa bien été &aenregistré&f.",
+
+  "afk.title": "&c&lAFK",
+  "afk.subtitle": "&fFaites /lobby pour retourner au lobby",
+
+  "login.title": "&b&lCONNEXION",
+  "login.login-subtitle": "&fFaites /login <password> pour vous authentifier",
+  "login.register-subtitle": "&fFaites /register <password> <password> pour vous enregistrer"
+}

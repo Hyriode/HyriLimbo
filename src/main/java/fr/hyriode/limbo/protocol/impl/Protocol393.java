@@ -14,6 +14,7 @@ public class Protocol393 extends ProtocolCommon {
     public void registerPackets() {
         super.registerPackets();
 
+        this.registry.registerIn(ProtocolState.PLAY, 0x01, PacketPlayInChatMessage.class);
         this.registry.registerIn(ProtocolState.PLAY, 0x0E, PacketPlayInKeepAlive.class);
         this.registry.registerOut(ProtocolState.PLAY, 0x21, PacketPlayOutKeepAlive.class);
         this.registry.registerOut(ProtocolState.PLAY, 0x25, PacketPlayOutJoinGame.class);

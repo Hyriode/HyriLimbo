@@ -14,6 +14,7 @@ public class Protocol47 extends ProtocolCommon {
     public void registerPackets() {
         super.registerPackets();
 
+        this.registry.registerIn(ProtocolState.PLAY, 0x01, PacketPlayInChatMessage.class);
         this.registry.registerOut(ProtocolState.PLAY, 0x00, PacketPlayOutKeepAlive.class);
         this.registry.registerOut(ProtocolState.PLAY, 0x01, PacketPlayOutJoinGame.class);
         this.registry.registerOut(ProtocolState.PLAY, 0x02, PacketPlayOutMessage.class);

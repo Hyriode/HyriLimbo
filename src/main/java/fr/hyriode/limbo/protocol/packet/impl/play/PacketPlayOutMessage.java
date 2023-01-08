@@ -1,6 +1,7 @@
 package fr.hyriode.limbo.protocol.packet.impl.play;
 
 import com.google.gson.JsonObject;
+import fr.hyriode.api.color.HyriChatColor;
 import fr.hyriode.limbo.protocol.NotchianBuffer;
 import fr.hyriode.limbo.protocol.ProtocolVersion;
 import fr.hyriode.limbo.protocol.packet.PacketOut;
@@ -19,7 +20,7 @@ public class PacketPlayOutMessage extends PacketOut {
 
         final JsonObject jsonObject = new JsonObject();
 
-        jsonObject.addProperty("text", message);
+        jsonObject.addProperty("text", HyriChatColor.translateAlternateColorCodes('&', message));
 
         this.message = jsonObject.toString();
     }

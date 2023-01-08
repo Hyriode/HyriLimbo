@@ -4,6 +4,7 @@ import fr.hyriode.api.HyriAPI;
 import fr.hyriode.limbo.HyriLimbo;
 import fr.hyriode.limbo.data.Title;
 import fr.hyriode.limbo.network.pipeline.PacketCodec;
+import fr.hyriode.limbo.player.event.PlayerQuitEvent;
 import fr.hyriode.limbo.player.profile.GameProfile;
 import fr.hyriode.limbo.protocol.Protocol;
 import fr.hyriode.limbo.protocol.ProtocolState;
@@ -107,7 +108,9 @@ public class PlayerSession {
         if (this.profile != null) {
             System.out.println(this.getName() + " left the server.");
 
+            HyriAPI.get().getEventBus().publish(new PlayerQuitEvent(this));
             HyriLimbo.get().removePlayer(this.profile.id());
+            HyriAPI.get().getLimbo().removePlayer(this.profile.id());
         }
 
         if (this.channel.isActive()) {

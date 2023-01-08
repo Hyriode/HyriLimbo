@@ -1,8 +1,11 @@
 package fr.hyriode.limbo.protocol.handler.login;
 
+import fr.hyriode.api.HyriAPI;
+import fr.hyriode.api.HyriAPIImpl;
 import fr.hyriode.limbo.HyriLimbo;
 import fr.hyriode.limbo.data.Title;
 import fr.hyriode.limbo.player.PlayerSession;
+import fr.hyriode.limbo.player.event.PlayerJoinEvent;
 import fr.hyriode.limbo.player.profile.GameProfile;
 import fr.hyriode.limbo.protocol.ProtocolState;
 import fr.hyriode.limbo.protocol.packet.PacketInHandler;
@@ -32,24 +35,17 @@ public class LoginStartHandler implements PacketInHandler<PacketLoginInStart> {
             profile = new GameProfile(profile.id(), name, profile.properties());
         }
 
-        System.out.println(profile.id());
-
         playerSession.setProfile(profile);
         playerSession.sendLoginSuccess();
         playerSession.setProtocolState(ProtocolState.PLAY);
         playerSession.sendJoinGame(GameMode.SPECTATOR, Dimension.OVERWORLD, Difficulty.PEACEFUL, 1000, "default", false);
         playerSession.sendPosition(0.0D, 0.0D, 0.0D, 0.0f, 0.0f);
 
-        playerSession.sendTitle(new Title().withTitle("§bHyriode")
-                .withSubtitle("§fTest")
-                .withFadeIn(5)
-                .withStay(5 * 20)
-                .withFadeOut(5));
-        playerSession.sendMessage("§bWelcome on the Limbo!");
-
         System.out.println(name + " joined the server.");
 
         HyriLimbo.get().addPlayer(playerSession);
+        HyriAPI.get().getLimbo().addPlayer(profile.id());
+        HyriAPI.get().getEventBus().publish(new PlayerJoinEvent(playerSession));
     }
 
 }
