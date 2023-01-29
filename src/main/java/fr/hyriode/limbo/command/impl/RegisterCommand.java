@@ -53,6 +53,7 @@ public class RegisterCommand extends Command {
         }
 
         HyriAPI.get().getAuthManager().newAuth(player.getUniqueId(), password);
+        HyriAPI.get().getPlayerManager().createPlayer(false, player.getUniqueId(), player.getName());
 
         player.sendMessage(Message.REGISTER_SUCCESS_MESSAGE.asString(player));
         player.sendTitle(new Title().withTitle(Message.LOGIN_TITLE.asString(player))

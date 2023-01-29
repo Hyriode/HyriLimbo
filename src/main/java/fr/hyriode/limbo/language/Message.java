@@ -1,5 +1,6 @@
 package fr.hyriode.limbo.language;
 
+import fr.hyriode.api.language.HyriLanguage;
 import fr.hyriode.api.language.HyriLanguageMessage;
 import fr.hyriode.api.player.IHyriPlayer;
 import fr.hyriode.limbo.player.PlayerSession;
@@ -61,7 +62,7 @@ public enum Message {
     }
 
     public String asString(IHyriPlayer account) {
-        return this.formatter.apply(account, this.asLang().getValue(account));
+        return this.formatter.apply(account, account == null ? this.asLang().getValue(HyriLanguage.FR) : this.asLang().getValue(account));
     }
 
     public String asString(PlayerSession player) {

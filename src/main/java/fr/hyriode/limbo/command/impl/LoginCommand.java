@@ -3,6 +3,7 @@ package fr.hyriode.limbo.command.impl;
 import fr.hyriode.api.HyriAPI;
 import fr.hyriode.api.player.IHyriPlayer;
 import fr.hyriode.api.player.auth.IHyriAuth;
+import fr.hyriode.api.player.event.PlayerJoinNetworkEvent;
 import fr.hyriode.hyggdrasil.api.limbo.HyggLimbo;
 import fr.hyriode.limbo.command.Command;
 import fr.hyriode.limbo.language.Message;
@@ -41,6 +42,7 @@ public class LoginCommand extends Command {
         if (auth != null) {
             if (auth.authenticate(password)) { // Check whether password is good
                 player.sendMessage(Message.LOGIN_SUCCESS_MESSAGE.asString(player));
+                HyriAPI.get().getNetworkManager().getEventBus().publishAsync(new PlayerJoinNetworkEvent(player.getUniqueId()));
                 HyriAPI.get().getLobbyAPI().sendPlayerToLobby(player.getUniqueId());
                 return;
             }

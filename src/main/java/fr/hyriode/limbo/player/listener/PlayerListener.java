@@ -19,20 +19,19 @@ public class PlayerListener {
     public void onJoin(PlayerJoinEvent event) {
         final PlayerSession player = event.getPlayer();
         final HyggLimbo.Type limboType = HyriAPI.get().getLimbo().getType();
-
         final IHyriPlayer account = IHyriPlayer.get(player.getUniqueId());
 
-        if (account.isPremium() && limboType == HyggLimbo.Type.LOGIN) { // Why is he on a login limbo?
+        if (account != null && account.isPremium() && limboType == HyggLimbo.Type.LOGIN) { // Why is he on a login limbo?
             HyriAPI.get().getLobbyAPI().sendPlayerToLobby(player.getUniqueId());
             return;
         }
 
         switch (limboType) {
-            case AFK -> player.sendTitle(new Title().withTitle(Message.AFK_TITLE.asString(player))
-                    .withSubtitle(Message.AFK_SUBTITLE.asString(player))
+            case AFK -> player.sendTitle(new Title().withTitle(Message.AFK_TITLE.asString(account))
+                    .withSubtitle(Message.AFK_SUBTITLE.asString(account))
                     .withStay(Integer.MAX_VALUE));
-            case LOGIN -> player.sendTitle(new Title().withTitle(Message.LOGIN_TITLE.asString(player))
-                    .withSubtitle((HyriAPI.get().getAuthManager().hasAuth(player.getUniqueId()) ? Message.LOGIN_LOGIN_SUBTITLE : Message.LOGIN_REGISTER_SUBTITLE).asString(player))
+            case LOGIN -> player.sendTitle(new Title().withTitle(Message.LOGIN_TITLE.asString(account))
+                    .withSubtitle((HyriAPI.get().getAuthManager().hasAuth(player.getUniqueId()) ? Message.LOGIN_LOGIN_SUBTITLE : Message.LOGIN_REGISTER_SUBTITLE).asString(account))
                     .withStay(Integer.MAX_VALUE));
         }
     }
