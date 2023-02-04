@@ -8,6 +8,7 @@ import fr.hyriode.hyggdrasil.api.protocol.data.HyggEnv;
 import fr.hyriode.limbo.HyriLimbo;
 
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by AstFaster
@@ -17,17 +18,17 @@ public class HyriAPIImpl extends CHyriAPIImpl {
 
     private LimboHandler limbo;
 
-    public HyriAPIImpl(IHyriAPIConfig config) {
+    public HyriAPIImpl(IHyriAPIConfig config, Logger logger) {
         super(config);
 
         this.preInit();
-        this.init(null);
+        this.init(null, logger);
         this.postInit();
     }
 
     @Override
-    protected void init(HyggEnv environment) {
-        super.init(environment);
+    protected void init(HyggEnv environment, Logger logger) {
+        super.init(environment, logger);
 
         this.limbo = new LimboHandler(this.hyggdrasilManager.withHyggdrasil() ? this.hyggdrasilManager.getApplication() : null);
     }
@@ -40,11 +41,6 @@ public class HyriAPIImpl extends CHyriAPIImpl {
     @Override
     public IHyriLimbo getLimbo() {
         return this.limbo;
-    }
-
-    @Override
-    public IHyriJoinManager getJoinManager() {
-        return null;
     }
 
 }

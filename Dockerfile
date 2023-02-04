@@ -28,4 +28,4 @@ COPY --from=build /usr/app/docker-entrypoint.sh /usr/app/docker-entrypoint.sh
 RUN chmod +x /usr/app/docker-entrypoint.sh
 
 # Start Limbo
-CMD "/usr/app/docker-entrypoint.sh"
+ENTRYPOINT ["sh", "/usr/app/docker-entrypoint.sh"]

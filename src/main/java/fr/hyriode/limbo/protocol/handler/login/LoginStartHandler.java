@@ -41,7 +41,7 @@ public class LoginStartHandler implements PacketInHandler<PacketLoginInStart> {
         playerSession.sendJoinGame(GameMode.SPECTATOR, Dimension.OVERWORLD, Difficulty.PEACEFUL, 1000, "default", false);
         playerSession.sendPosition(0.0D, 0.0D, 0.0D, 0.0f, 0.0f);
 
-        System.out.println(name + " joined the server.");
+        System.out.println(name + "[" + playerSession.getChannel().remoteAddress().toString() + "] joined the server.");
 
         HyriLimbo.get().addPlayer(playerSession);
         HyriAPI.get().getLimbo().addPlayer(profile.id());

@@ -10,7 +10,7 @@
 
   "register.passwords-dont-match.message": "&fThe &b2 passwords don't &cmatch&f!",
   "register.invalid-password.message": "&cInvalid password (6 chars minimum)!",
-  "register.success.message": "&fYour &cpassword &fhas successfully been &asaved&f.",
+  "register.success.message": "&fYour &bpassword &fhas successfully been &asaved&f.",
 
   "afk.title": "&c&lAFK",
   "afk.subtitle": "&fDo /lobby to return to lobby",

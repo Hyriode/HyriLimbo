@@ -58,7 +58,7 @@ public class HyriLimbo {
         System.out.println("Starting " + References.NAME + "...");
 
         this.config = LimboConfig.load();
-        this.hyriAPI = new HyriAPIImpl(this.config.hyriAPI());
+        this.hyriAPI = new HyriAPIImpl(this.config.hyriAPI(), this.logger);
         this.loadLanguages();
         this.protocolRepository = new ProtocolRepository();
         this.commandManager = new CommandManager();

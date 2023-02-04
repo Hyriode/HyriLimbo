@@ -49,8 +49,6 @@ public class LimboHandler implements IHyriLimbo {
         this.data = handle.getData();
         this.players = handle.getPlayers();
         this.startedTime = handle.getStartedTime();
-
-        this.update();
     }
 
     @Override

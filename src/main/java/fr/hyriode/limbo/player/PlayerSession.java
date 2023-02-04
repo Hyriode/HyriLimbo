@@ -86,6 +86,10 @@ public class PlayerSession {
         }
     }
 
+    public void resetTitle() {
+        this.sendTitle(new Title());
+    }
+
     public void sendMessage(String message) {
         this.sendPacket(new PacketPlayOutMessage(PacketPlayOutMessage.ChatPosition.CHAT, message));
     }
@@ -106,7 +110,7 @@ public class PlayerSession {
 
     public void destroy() {
         if (this.profile != null) {
-            System.out.println(this.getName() + " left the server.");
+            System.out.println(this.getName() + "[" + this.channel.remoteAddress().toString() + "] left the server.");
 
             HyriAPI.get().getEventBus().publish(new PlayerQuitEvent(this));
             HyriLimbo.get().removePlayer(this.profile.id());

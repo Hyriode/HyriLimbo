@@ -42,13 +42,13 @@ public class RegisterCommand extends Command {
         final String password = args[0];
         final String confirmPassword = args[1];
 
-        if (!password.equals(confirmPassword)) { // Password and confirmation password doesn't match
-            player.sendMessage(Message.REGISTER_PASSWORDS_DONT_MATCH_MESSAGE.asString(player));
+        if (password.length() < 6) { // Password is too short
+            player.sendMessage(Message.REGISTER_INVALID_PASSWORD_MESSAGE.asString(player));
             return;
         }
 
-        if (password.length() < 6) { // Password is too short
-            player.sendMessage(Message.REGISTER_INVALID_PASSWORD_MESSAGE.asString(player));
+        if (!password.equals(confirmPassword)) { // Password and confirmation password doesn't match
+            player.sendMessage(Message.REGISTER_PASSWORDS_DONT_MATCH_MESSAGE.asString(player));
             return;
         }
 
