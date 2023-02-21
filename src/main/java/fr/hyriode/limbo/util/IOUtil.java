@@ -9,15 +9,22 @@ import java.security.NoSuchAlgorithmException;
 public class IOUtil {
 
     public static void copyInputStreamToFile(InputStream inputStream, File file) {
-        try (final OutputStream outputStream = new FileOutputStream(file)) {
-            final byte[] buffer = new byte[8 * 1024];
-
-            int bytesRead;
-            while ((bytesRead = inputStream.read(buffer)) != -1) {
-                outputStream.write(buffer, 0, bytesRead);
+        try {
+            if (!file.exists()) {
+                file.getParentFile().mkdirs();
+                file.createNewFile();
             }
 
-            inputStream.close();
+            try (final OutputStream outputStream = new FileOutputStream(file)) {
+                final byte[] buffer = new byte[8 * 1024];
+
+                int bytesRead;
+                while ((bytesRead = inputStream.read(buffer)) != -1) {
+                    outputStream.write(buffer, 0, bytesRead);
+                }
+
+                inputStream.close();
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
