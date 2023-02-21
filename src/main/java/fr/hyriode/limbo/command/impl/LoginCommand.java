@@ -27,7 +27,7 @@ public class LoginCommand extends Command {
 
         final IHyriPlayer account = IHyriPlayer.get(player.getUniqueId());
 
-        if (account.getAuth().getHash() == null) { // The player is not registered!
+        if (account == null || account.getAuth().getHash() == null) { // The player is not registered!
             player.sendMessage(Message.COMMAND_NO_PERMISSION_MESSAGE.asString(player));
             return;
         }
