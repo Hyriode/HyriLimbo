@@ -27,7 +27,7 @@ public class RegisterCommand extends Command {
 
         IHyriPlayer account = IHyriPlayer.get(player.getUniqueId());
 
-        if (account == null || account.getAuth().getHash() != null) { // The player has already his password stored
+        if (account != null && account.getAuth().getHash() != null) { // The player has already his password stored
             player.sendMessage(Message.COMMAND_NO_PERMISSION_MESSAGE.asString(player));
             return;
         }
