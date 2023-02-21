@@ -23,6 +23,8 @@ public class LobbyCommand extends Command {
             return;
         }
 
+        player.resetTitle();
+
         HyriAPI.get().getLobbyAPI().sendPlayerToLobby(player.getUniqueId());
     }
 

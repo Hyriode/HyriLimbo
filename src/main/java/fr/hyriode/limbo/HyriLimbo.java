@@ -13,14 +13,15 @@ import fr.hyriode.limbo.protocol.ProtocolRepository;
 import fr.hyriode.limbo.util.IOUtil;
 import fr.hyriode.limbo.util.References;
 import fr.hyriode.limbo.util.logger.ColoredLogger;
-import org.apache.commons.io.FileUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.Collection;
+import java.util.Map;
+import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
@@ -100,7 +101,7 @@ public class HyriLimbo {
                     final boolean exists = Files.exists(langFile);
 
                     if (!exists) {
-                        FileUtils.copyInputStreamToFile(inputStream, langFile.toFile());
+                        IOUtil.copyInputStreamToFile(inputStream, langFile.toFile());
                         continue;
                     }
 
@@ -110,7 +111,7 @@ public class HyriLimbo {
                         }
 
                         Files.delete(langFile);
-                        FileUtils.copyInputStreamToFile(inputStream, langFile.toFile());
+                        IOUtil.copyInputStreamToFile(inputStream, langFile.toFile());
                     }
                 }
             }

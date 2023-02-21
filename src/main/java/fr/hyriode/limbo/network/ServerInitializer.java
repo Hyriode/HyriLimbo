@@ -1,6 +1,9 @@
 package fr.hyriode.limbo.network;
 
-import fr.hyriode.limbo.network.pipeline.*;
+import fr.hyriode.limbo.network.pipeline.FrameDecoder;
+import fr.hyriode.limbo.network.pipeline.FrameEncoder;
+import fr.hyriode.limbo.network.pipeline.PacketCodec;
+import fr.hyriode.limbo.network.pipeline.PacketHandler;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;

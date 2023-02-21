@@ -1,14 +1,27 @@
 package fr.hyriode.limbo.util;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class IOUtil {
+
+    public static void copyInputStreamToFile(InputStream inputStream, File file) {
+        try (final OutputStream outputStream = new FileOutputStream(file)) {
+            final byte[] buffer = new byte[8 * 1024];
+
+            int bytesRead;
+            while ((bytesRead = inputStream.read(buffer)) != -1) {
+                outputStream.write(buffer, 0, bytesRead);
+            }
+
+            inputStream.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public static boolean createDirectory(Path path) {
         if (!Files.exists(path)) {

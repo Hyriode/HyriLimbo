@@ -1,14 +1,11 @@
 package fr.hyriode.limbo.network.pipeline;
 
-import fr.hyriode.limbo.HyriLimbo;
 import fr.hyriode.limbo.player.PlayerSession;
 import fr.hyriode.limbo.protocol.packet.PacketIn;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.logging.Level;
 
 /**
  * Created by AstFaster

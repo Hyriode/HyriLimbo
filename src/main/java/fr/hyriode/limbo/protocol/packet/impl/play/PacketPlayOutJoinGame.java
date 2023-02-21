@@ -1,11 +1,11 @@
 package fr.hyriode.limbo.protocol.packet.impl.play;
 
-import fr.hyriode.limbo.protocol.ProtocolVersion;
-import fr.hyriode.limbo.world.GameMode;
 import fr.hyriode.limbo.protocol.NotchianBuffer;
+import fr.hyriode.limbo.protocol.ProtocolVersion;
 import fr.hyriode.limbo.protocol.packet.PacketOut;
 import fr.hyriode.limbo.world.Difficulty;
 import fr.hyriode.limbo.world.Dimension;
+import fr.hyriode.limbo.world.GameMode;
 
 /**
  * Created by AstFaster

@@ -10,8 +10,8 @@ import fr.hyriode.limbo.protocol.packet.PacketInHandler;
 import fr.hyriode.limbo.protocol.packet.impl.PacketInHandshake;
 import fr.hyriode.limbo.util.UUIDUtil;
 
+import java.net.InetSocketAddress;
 import java.util.ArrayList;
-import java.util.UUID;
 import java.util.logging.Level;
 
 /**
@@ -53,6 +53,7 @@ public class HandshakeHandler implements PacketInHandler<PacketInHandshake> {
         final String[] split = packet.getAddress().split("\00");
 
         if (split.length == 3 || split.length == 4) {
+            playerSession.setAddress(new InetSocketAddress(split[1], ((InetSocketAddress) playerSession.getAddress()).getPort()));
             playerSession.setProfile(new GameProfile(UUIDUtil.fromString(split[2]), null, new ArrayList<>()));
         }
     }

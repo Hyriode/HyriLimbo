@@ -20,6 +20,7 @@ import fr.hyriode.limbo.world.Dimension;
 import fr.hyriode.limbo.world.GameMode;
 import io.netty.channel.Channel;
 
+import java.net.SocketAddress;
 import java.util.UUID;
 
 /**
@@ -29,6 +30,7 @@ import java.util.UUID;
 public class PlayerSession {
 
     private final Channel channel;
+    private SocketAddress address;
 
     private ProtocolState protocolState;
     private ProtocolVersion protocolVersion;
@@ -41,6 +43,7 @@ public class PlayerSession {
 
     public PlayerSession(Channel channel) {
         this.channel = channel;
+        this.address = channel.remoteAddress();
         this.protocolVersion = ProtocolVersion.earliest();
         this.protocol = HyriLimbo.get().getProtocolRepository().getProtocol(this.protocolVersion);
         this.protocolState = ProtocolState.HANDSHAKE;
@@ -110,7 +113,7 @@ public class PlayerSession {
 
     public void destroy() {
         if (this.profile != null) {
-            System.out.println(this.getName() + "[" + this.channel.remoteAddress().toString() + "] left the server.");
+            System.out.println(this.getName() + "[" + this.address.toString() + "] left the server.");
 
             HyriAPI.get().getEventBus().publish(new PlayerQuitEvent(this));
             HyriLimbo.get().removePlayer(this.profile.id());
@@ -124,6 +127,14 @@ public class PlayerSession {
 
     public Channel getChannel() {
         return this.channel;
+    }
+
+    public SocketAddress getAddress() {
+        return this.address;
+    }
+
+    public void setAddress(SocketAddress address) {
+        this.address = address;
     }
 
     public ProtocolState getProtocolState() {

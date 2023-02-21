@@ -51,7 +51,16 @@ public class CommandManager {
     public Command getCommand(String label) {
         final Command command = this.commands.get(label);
 
-        return command == null ? this.commands.values().stream().filter(c -> Arrays.stream(c.getAliases()).allMatch(alias -> alias.equals(label))).findFirst().orElse(null) : command;
+        if (command != null) {
+            return command;
+        }
+
+        for (Command c : this.commands.values()) {
+            if (Arrays.asList(c.getAliases()).contains(label)) {
+                return c;
+            }
+        }
+        return null;
     }
 
 }

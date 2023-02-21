@@ -28,8 +28,8 @@ repositories {
         url = 'https://maven.pkg.github.com/Hyriode/HyriAPI/'
 
         credentials {
-            username System.getenv('USERNAME')
-            password System.getenv('TOKEN')
+            username System.getenv('GITHUB_USERNAME')
+            password System.getenv('GITHUB_TOKEN')
         }
     }
 }
@@ -45,7 +45,7 @@ shadowJar {
 dependencies {
     implementation 'io.netty:netty-all:4.1.86.Final'
 //    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation ('fr.hyriode:hyriapi-common:1.4.3') {
+    implementation ('fr.hyriode:hyriapi-common:1.5.1') {
         exclude module: 'gson'
     }
     implementation 'com.google.code.gson:gson:2.10.1'

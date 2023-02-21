@@ -2,15 +2,11 @@ package fr.hyriode.limbo.command.impl;
 
 import fr.hyriode.api.HyriAPI;
 import fr.hyriode.api.player.IHyriPlayer;
-import fr.hyriode.api.player.auth.IHyriAuth;
 import fr.hyriode.hyggdrasil.api.limbo.HyggLimbo;
 import fr.hyriode.limbo.command.Command;
 import fr.hyriode.limbo.data.Title;
 import fr.hyriode.limbo.language.Message;
 import fr.hyriode.limbo.player.PlayerSession;
-import org.mindrot.jbcrypt.BCrypt;
-
-import java.util.Arrays;
 
 /**
  * Created by AstFaster
@@ -29,7 +25,9 @@ public class RegisterCommand extends Command {
             return;
         }
 
-        if (HyriAPI.get().getAuthManager().hasAuth(player.getUniqueId())) { // The player has already his password stored
+        IHyriPlayer account = IHyriPlayer.get(player.getUniqueId());
+
+        if (account.getAuth().getHash() != null) { // The player has already his password stored
             player.sendMessage(Message.COMMAND_NO_PERMISSION_MESSAGE.asString(player));
             return;
         }
@@ -52,8 +50,9 @@ public class RegisterCommand extends Command {
             return;
         }
 
-        HyriAPI.get().getAuthManager().newAuth(player.getUniqueId(), password);
-        HyriAPI.get().getPlayerManager().createPlayer(false, player.getUniqueId(), player.getName());
+        account = HyriAPI.get().getPlayerManager().createPlayer(false, player.getUniqueId(), player.getName());
+        account.getAuth().newHash(password);
+        account.update();
 
         player.sendMessage(Message.REGISTER_SUCCESS_MESSAGE.asString(player));
         player.sendTitle(new Title().withTitle(Message.LOGIN_TITLE.asString(player))

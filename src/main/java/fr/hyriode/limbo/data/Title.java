@@ -1,7 +1,6 @@
 package fr.hyriode.limbo.data;
 
 import fr.hyriode.limbo.player.PlayerSession;
-import fr.hyriode.limbo.protocol.packet.impl.play.PacketPlayOutTitle;
 
 /**
  * Created by AstFaster

@@ -3,7 +3,6 @@ package fr.hyriode.api;
 import fr.hyriode.api.config.IHyriAPIConfig;
 import fr.hyriode.api.impl.common.CHyriAPIImpl;
 import fr.hyriode.api.limbo.IHyriLimbo;
-import fr.hyriode.api.server.join.IHyriJoinManager;
 import fr.hyriode.hyggdrasil.api.protocol.data.HyggEnv;
 import fr.hyriode.limbo.HyriLimbo;
 

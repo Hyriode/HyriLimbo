@@ -5,13 +5,10 @@ import fr.hyriode.limbo.protocol.NotchianBuffer;
 import fr.hyriode.limbo.protocol.Protocol;
 import fr.hyriode.limbo.protocol.ProtocolState;
 import fr.hyriode.limbo.protocol.ProtocolVersion;
-import fr.hyriode.limbo.protocol.packet.Packet;
-import fr.hyriode.limbo.protocol.packet.PacketIn;
 import fr.hyriode.limbo.protocol.packet.PacketOut;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageCodec;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
