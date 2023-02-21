@@ -15,6 +15,7 @@ jobs:
       - name: Build and tag image
         run: docker build -t "ghcr.io/hyriode/limbo:dev" -f Dockerfile . --build-arg USERNAME=$GITHUB_ACTOR --build-arg TOKEN=$GITHUB_TOKEN
         env:
+          GITHUB_USERNAME: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
 
       - name: Docker login
