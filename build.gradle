@@ -45,7 +45,7 @@ shadowJar {
 dependencies {
     implementation 'io.netty:netty-all:4.1.86.Final'
 //    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation ('fr.hyriode:hyriapi-common:1.5.1') {
+    implementation ('fr.hyriode:hyriapi-common:1.5.2-SNAPSHOT') {
         exclude module: 'gson'
     }
     implementation 'com.google.code.gson:gson:2.10.1'
