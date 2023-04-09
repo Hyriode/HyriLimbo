@@ -18,6 +18,7 @@ import fr.hyriode.limbo.protocol.packet.impl.status.PacketStatusOutResponse;
 import fr.hyriode.limbo.world.Difficulty;
 import fr.hyriode.limbo.world.Dimension;
 import fr.hyriode.limbo.world.GameMode;
+import fr.hyriode.limbo.world.Location;
 import io.netty.channel.Channel;
 
 import java.net.SocketAddress;
@@ -37,6 +38,8 @@ public class PlayerSession {
     private Protocol protocol;
 
     private GameProfile profile;
+
+    private Location location;
 
     private long lastKeepAlive = -1;
     private long keepAliveId = 0;
@@ -177,6 +180,14 @@ public class PlayerSession {
 
     public void setProfile(GameProfile profile) {
         this.profile = profile;
+    }
+
+    public Location getLocation() {
+        return this.location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
     public long getLastKeepAlive() {

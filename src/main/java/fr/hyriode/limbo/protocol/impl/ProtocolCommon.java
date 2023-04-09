@@ -6,6 +6,7 @@ import fr.hyriode.limbo.protocol.handler.HandshakeHandler;
 import fr.hyriode.limbo.protocol.handler.login.LoginStartHandler;
 import fr.hyriode.limbo.protocol.handler.play.ChatHandler;
 import fr.hyriode.limbo.protocol.handler.play.KeepAliveHandler;
+import fr.hyriode.limbo.protocol.handler.play.PositionHandler;
 import fr.hyriode.limbo.protocol.handler.status.PingHandler;
 import fr.hyriode.limbo.protocol.handler.status.StatusRequestHandler;
 import fr.hyriode.limbo.protocol.packet.impl.PacketInHandshake;
@@ -14,6 +15,7 @@ import fr.hyriode.limbo.protocol.packet.impl.login.PacketLoginInStart;
 import fr.hyriode.limbo.protocol.packet.impl.login.PacketLoginOutSuccess;
 import fr.hyriode.limbo.protocol.packet.impl.play.PacketPlayInChatMessage;
 import fr.hyriode.limbo.protocol.packet.impl.play.PacketPlayInKeepAlive;
+import fr.hyriode.limbo.protocol.packet.impl.play.PacketPlayInPosition;
 import fr.hyriode.limbo.protocol.packet.impl.status.PacketStatusInPing;
 import fr.hyriode.limbo.protocol.packet.impl.status.PacketStatusInRequest;
 import fr.hyriode.limbo.protocol.packet.impl.status.PacketStatusOutPong;
@@ -46,6 +48,7 @@ public abstract class ProtocolCommon extends Protocol {
         this.registry.registerHandler(PacketStatusInPing.class, new PingHandler());
         this.registry.registerHandler(PacketLoginInStart.class, new LoginStartHandler());
         this.registry.registerHandler(PacketPlayInKeepAlive.class, new KeepAliveHandler());
+        this.registry.registerHandler(PacketPlayInPosition.class, new PositionHandler());
         this.registry.registerHandler(PacketPlayInChatMessage.class, new ChatHandler());
     }
 
