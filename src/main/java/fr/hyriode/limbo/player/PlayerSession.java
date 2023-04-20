@@ -186,7 +186,7 @@ public class PlayerSession {
         return this.location;
     }
 
-    public void setLocation(Location location) {
+    public synchronized void setLocation(Location location) {
         this.location = location;
     }
 
