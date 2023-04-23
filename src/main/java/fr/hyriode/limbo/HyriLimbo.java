@@ -1,8 +1,6 @@
 package fr.hyriode.limbo;
 
-import fr.hyriode.api.HyriAPI;
 import fr.hyriode.api.HyriAPIImpl;
-import fr.hyriode.api.language.HyriLanguage;
 import fr.hyriode.hyggdrasil.api.limbo.HyggLimbo;
 import fr.hyriode.limbo.command.CommandManager;
 import fr.hyriode.limbo.config.LimboConfig;
@@ -14,9 +12,6 @@ import fr.hyriode.limbo.util.IOUtil;
 import fr.hyriode.limbo.util.References;
 import fr.hyriode.limbo.util.logger.ColoredLogger;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collection;
@@ -31,7 +26,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  */
 public class HyriLimbo {
 
-    private static final Path LANG_FOLDERS = Paths.get("lang");
+    private static final Path LANG_FOLDER = Paths.get("lang");
 
     private static HyriLimbo instance;
 
@@ -60,7 +55,7 @@ public class HyriLimbo {
 
         this.config = LimboConfig.load();
         this.hyriAPI = new HyriAPIImpl(this.config.hyriAPI(), this.logger);
-        this.loadLanguages();
+        this.hyriAPI.getLanguageManager().loadLanguagesMessages(LANG_FOLDER, "/lang/", HyriLimbo.class::getResourceAsStream);
         this.protocolRepository = new ProtocolRepository();
         this.commandManager = new CommandManager();
 
@@ -84,42 +79,6 @@ public class HyriLimbo {
         this.hyriAPI.getLimbo().setState(HyggLimbo.State.SHUTDOWN);
         this.hyriAPI.stop();
         this.server.stop();
-    }
-
-    private void loadLanguages() {
-        try {
-            for (HyriLanguage language : HyriLanguage.values()) {
-                final String path = "/lang/" + language.getCode() + ".json";
-
-                try (final InputStream inputStream = HyriLimbo.class.getResourceAsStream(path)) {
-                    if (inputStream == null) {
-                        System.err.println("Cannot get resource from '" + path + "'!");
-                        continue;
-                    }
-
-                    final Path langFile = Paths.get(LANG_FOLDERS.toString(), language.getCode() + ".json");
-                    final boolean exists = Files.exists(langFile);
-
-                    if (!exists) {
-                        IOUtil.copyInputStreamToFile(inputStream, langFile.toFile());
-                        continue;
-                    }
-
-                    try (final InputStream existingInput = Files.newInputStream(langFile); final InputStream clonedInput = HyriLimbo.class.getResourceAsStream(path)) {
-                        if (IOUtil.toMD5(clonedInput).equals(IOUtil.toMD5(existingInput))) {
-                            continue;
-                        }
-
-                        Files.delete(langFile);
-                        IOUtil.copyInputStreamToFile(inputStream, langFile.toFile());
-                    }
-                }
-            }
-
-            HyriAPI.get().getLanguageManager().loadLanguagesMessages(LANG_FOLDERS.toFile());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     public static HyriLimbo get() {
