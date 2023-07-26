@@ -59,7 +59,7 @@ public class Server {
 
     private enum Transport {
 
-        EPOLL(0, () -> new EpollEventLoopGroup(0, new ThreadFactoryBuilder().setNameFormat("Netty IO Thread #%1$d").build()), EpollServerSocketChannel.class, () -> Epoll.isAvailable()),
+        EPOLL(0, () -> new EpollEventLoopGroup(0, new ThreadFactoryBuilder().setNameFormat("Netty IO Thread #%1$d").build()), EpollServerSocketChannel.class, Epoll::isAvailable),
         NIO(1, () -> new NioEventLoopGroup(0, new ThreadFactoryBuilder().setNameFormat("Netty IO Thread #%1$d").build()), NioServerSocketChannel.class, () -> true);
 
         private final int priority;

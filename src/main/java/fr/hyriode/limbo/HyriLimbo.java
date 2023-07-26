@@ -2,6 +2,7 @@ package fr.hyriode.limbo;
 
 import fr.hyriode.api.HyriAPI;
 import fr.hyriode.api.HyriAPIImpl;
+import fr.hyriode.api.event.HyriEventHandler;
 import fr.hyriode.api.language.HyriLanguage;
 import fr.hyriode.hyggdrasil.api.limbo.HyggLimbo;
 import fr.hyriode.limbo.command.CommandManager;
